@@ -1,6 +1,7 @@
 .DS_Store
 data/
 create_train_test.py
+*.swp
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
