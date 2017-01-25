@@ -13,32 +13,42 @@
 
 # tweets_to_arff.py
 # felipebravom
+# Running example: python tweets_to_arff data/anger-ratings-0to1.test.target.tsv data/anger-ratings-0to1.test.target.arff
+import sys
 
-import math
 
-
-def create_arff(file_name):
+def create_arff(input_file,output_file):
     """
     Creates an arff dataset
     """
     
     
 
-    header='@relation '+file_name+'\n\n@attribute content string\n@attribute score numeric \n\n@data\n'
-    out=open(file_name+'.arff',"w")
+
+    out=open(output_file,"w")  
+    header='@relation '+input_file+'\n\n@attribute id numeric \n@attribute tweet string\n@attribute emotion string\n@attribute score numeric \n\n@data\n'
     out.write(header)
+       
 
        
-    f=open(file_name, "rb")
+    f=open(input_file, "rb")
     lines=f.readlines()
+    
+    
     for line in lines:
         parts=line.split("\t")
-        if len(parts)==2:
+        if len(parts)==4:
      
-            message=parts[0]
-            label=parts[1].strip()
-            line='\"'+message+'\",'+label+'\n'
-            out.write(line)
+            id=parts[0]
+            tweet=parts[1]
+            emotion=parts[2]
+            score=parts[3].strip() 
+            score = score if score != "NONE" else "?"
+            
+            out_line=id+',\"'+tweet+'\",'+'\"'+emotion+'\",'+score+'\n'
+            out.write(out_line)
+        else:
+            print "Wrong format"
     
 
     f.close()  
@@ -46,36 +56,22 @@ def create_arff(file_name):
     
     
     
-
-def split_dataset(file_name,split):
-    """
-    Splits a dataset into training and testing datasets using a split parameter
-    """
-    f=open(file_name, "rb")
-    lines=f.readlines()
+  
     
-    cut_off=int(math.ceil(len(lines)*split))
-    
-    train=open(file_name+'.train',"w")
-    for line in lines[1:cut_off]:
-        train.write(line)
-    train.close()
-    
-    test=open(file_name+'.test',"w")
-    for line in lines[cut_off+1:len(lines)]:
-        test.write(line)
-    test.close()
-    
-    
-    
+def main(argv):
+    input_file=argv[0]
+    output_file=argv[1]
+    create_arff(input_file,output_file)
+   
+        
+if __name__ == "__main__":
+    main(sys.argv[1:])    
     
 
 
-if __name__ == '__main__':
-    file_name="data/anger-ratings-0to1.txt" 
-    split_dataset(file_name,0.5)
-    create_arff(file_name)
-    create_arff(file_name+'.train')
-    create_arff(file_name+'.test')
+
+
+    
+
     
     
