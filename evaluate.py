@@ -12,8 +12,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # tweets_to_arff.py
-# felipebravom
-# Running example: python evaluate.py data/wekapredictionsfixed.csv data/anger-ratings-0to1.test.gold.tsv
+# Author: felipebravom
+# Descrition: checks format and calculates Pearsons correlation WASSA-2017 Shared Task on Emotion Intensity (EmoInt)
+# usage: python evaluate.py <file-predictions> <file-gold>
+# requires: numpy
 
 import numpy
 import sys
@@ -72,6 +74,7 @@ def evaluate(pred,gold):
         
         cov=numpy.cov(pred_scores, gold_scores)[0, 1]
         sd_pred=numpy.std(pred_scores)
+        
         #Replace zero standard deviation values
         sd_pred= sd_pred if sd_pred != 0 else 1
         
