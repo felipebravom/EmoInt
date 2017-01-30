@@ -11,14 +11,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# tweets_to_arff.py
+# evaluate.py
 # Author: felipebravom
 # Descrition: checks format and calculates Pearsons correlation WASSA-2017 Shared Task on Emotion Intensity (EmoInt)
-# usage: python evaluate.py <file-predictions> <file-gold>
+# usage: python evaluate.py <number-of-pairs> <file-predictions-1> <file-gold-1> ..... <file-predictions-n> <file-gold-n>
 # requires: numpy
 
 import numpy
 import sys
+import scipy.stats
+import math
 
 
 def evaluate(pred,gold):
@@ -71,19 +73,18 @@ def evaluate(pred,gold):
                 raise ValueError('Repeated id in test data.')
                 
       
+        # return zero correlation if predictions are constant
+        if numpy.std(pred_scores)==0 or numpy.std(gold_scores)==0:
+            return (0,0)
         
-        cov=numpy.cov(pred_scores, gold_scores)[0, 1]
-        sd_pred=numpy.std(pred_scores)
-        
-        #Replace zero standard deviation values
-        sd_pred= sd_pred if sd_pred != 0 else 1
-        
-        sd_gold=numpy.std(gold_scores)
-        sd_gold= sd_gold if sd_gold != 0 else 1
 
-        pears_corr=cov/(sd_pred*sd_gold)
+        pears_corr=scipy.stats.pearsonr(pred_scores,gold_scores)[0]                                    
+        spear_corr=scipy.stats.spearmanr(pred_scores,gold_scores)[0]                                
+                                    
+      
+        return (pears_corr,spear_corr)
         
-        print "Pearsons correlation\t"+str(pears_corr)+"\n"
+       
                                     
                           
         
@@ -91,9 +92,38 @@ def evaluate(pred,gold):
         raise ValueError('Predictions and gold data have different number of lines.')
 
 def main(argv):
-    pred=argv[0]
-    gold=argv[1]
-    evaluate(pred,gold)  
+    try:
+        num_pairs=int(argv[0])
+    except ValueError:
+        raise ValueError('First parameter must be an integer.')
+    
+    
+    if len(argv)!=num_pairs*2+1:
+        raise ValueError('Invalid number of parameters.')
+
+    pear_results=[]
+    spear_results=[]
+        
+        
+    for i in range(0,num_pairs*2,2):
+        pred=argv[i+1]
+        gold=argv[i+2]       
+        result=evaluate(pred,gold)
+        print "Pearsons correlation between "+pred+" and "+gold+":\t"+str(result[0])        
+        pear_results.append(result[0])
+        
+        
+        print "Spearman correlation between "+pred+" and "+gold+":\t"+str(result[1])        
+        spear_results.append(result[1])
+        
+        
+    avg_pear=numpy.mean(pear_results)
+    avg_spear=numpy.mean(spear_results)
+    
+    print
+    
+    print "Average Pearsons correlation:\t"+str(avg_pear)
+    print "Average Spearman correlation:\t"+str(avg_spear)
         
 if __name__ == "__main__":
     main(sys.argv[1:])
