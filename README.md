@@ -2,7 +2,7 @@
 Scripts for WASSA-2017 Shared Task on Emotion Intensity (EmoInt).
 
 ## 1. Evaluation Script
-The evaluation script *evaluate.py* calculates the [Pearsons correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) and [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) between the gold standard scores and the given predictions.  The script can receive multiple pairs of prediction and gold standard files. In case of receiving more than one pair it will compute the average Pearsons and Spearman correlation. Note that Pearson is the official competition metric. Spearman's coefficient is only given as a reference.
+The evaluation script *evaluate.py* calculates the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) and [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) between the gold standard scores and the given predictions.  The script can receive multiple pairs of prediction and gold standard files. In case of receiving more than one pair, it will compute the average Pearson and Spearman correlation. Note that Pearson is the official competition metric and that Spearman's coefficient is only given as a reference.
 
 
 ### 1.1. Prerequisites
