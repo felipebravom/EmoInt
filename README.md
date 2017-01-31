@@ -21,7 +21,7 @@ Example:
  ```bash
 python evaluate.py 4 anger-pred.tsv anger-gold.tsv fear-pred.tsv fear-gold.tsv joy-pred.tsv joy-gold.tsv sadness-pred.tsv sadness-gold.tsv
 ```
-We suggest creating gold files with random scores to test the script.
+We suggest creating gold files with random scores for testing the script.
 
 ### 1.3. Format
 Each input file must have the following format: id[tab]tweet[tab]emotion[tab]score. The script will complain in case of receiving a file with wrong format. 
