@@ -20,7 +20,7 @@
 import numpy
 import sys
 import scipy.stats
-import math
+
 
 
 def evaluate(pred,gold):
