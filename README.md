@@ -13,7 +13,7 @@ The evaluation script *evaluate.py* calculates the [Pearsons correlation coeffic
 
 
  ```bash
-python evaluate.py <number-of-pairs> <file-predictions-1> <file-gold-1> ..... <file-predictions-n> <file-gold-n>
+python evaluate.py <number-of-pairs> <file-prediction-1> <file-gold-1> ..... <file-prediction-n> <file-gold-n>
 ```
 
 Example:
