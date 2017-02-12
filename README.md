@@ -6,9 +6,9 @@ The evaluation script *evaluate.py* calculates the [Pearson correlation coeffici
 
 
 ### 1.1. Prerequisites
-*[Python 2.7](https://www.python.org/download/releases/2.7/)
-*[numpy](http://www.numpy.org/)
-*[SciPy](http://www.scipy.org/)
+* [Python 2.7](https://www.python.org/download/releases/2.7/)
+* [numpy](http://www.numpy.org/)
+* [SciPy](http://www.scipy.org/)
 
 ### 1.2. Usage
 
