@@ -2,7 +2,7 @@
 Scripts for WASSA-2017 Shared Task on Emotion Intensity (EmoInt).
 
 ## 1. Evaluation Script
-The evaluation script *evaluate.py* calculates the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) and [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) between the gold standard scores and the given predictions.  The script can receive multiple pairs of prediction and gold standard files. In case of receiving more than one pair, it will compute the average Pearson and Spearman correlation. Note that Pearson is the official competition metric and that Spearman's coefficient is only given as a reference.
+The evaluation script [evaluate.py](blob/master/evaluate.py) calculates the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) and [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) between the gold standard scores and the given predictions.  The script can receive multiple pairs of prediction and gold standard files. In case of receiving more than one pair, it will compute the average Pearson and Spearman correlation. Note that Pearson is the official competition metric and that Spearman's coefficient is only given as a reference.
 
 
 ### 1.1. Prerequisites
@@ -30,7 +30,7 @@ Each input file must have the following format: id[tab]tweet[tab]emotion[tab]sco
 ## 2. Weka Baseline System
 We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package called [AffectiveTweets](https://github.com/felipebravom/AffectiveTweets) to be used as a baseline system. The package allows calculating multiple features from a tweet. Installation instructions are given in the project's [webpage](https://github.com/felipebravom/AffectiveTweets).
 
-We have also implemented the *tweets_to_arff.py* script for converting the given data into [arff](http://weka.wikispaces.com/ARFF) format, and the *fix_weka_output.py* script for converting weka predictions into the official format.   
+We have also implemented the [tweets_to_arff.py](blob/master/tweets_to_arff.py) script for converting the given data into [arff](http://weka.wikispaces.com/ARFF) format, and the [fix_weka_output.py](blob/master/fix_weka_output.py) script for converting weka predictions into the official format.   
 
 
 ### 2.1. Example
