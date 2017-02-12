@@ -1,4 +1,5 @@
 .DS_Store
+duplicate/
 data/
 create_train_test.py
 *.swp
