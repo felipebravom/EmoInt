@@ -69,7 +69,7 @@ python fix_weka_output.py data/anger-predictions.csv data/anger-predictions-fixe
 python evaluate.py 1 data/anger-predictions-fixed.csv data/anger-ratings-0to1.test.gold.tsv
  ```
  
-### 2.2 Another example
+### 2.2. Another example
   Next, we show another example using all the features supported by the baseline system: word n-grams, character n-grams, Brown word clusters, POS tags, lexicons, SentiStrengh, and word embeddings.  In this case we are using word embeddings trained from a large corpus of tweets that can be downloaded [here](https://github.com/felipebravom/AffectiveTweets/releases/download/1.0.0/w2v.twitter.edinburgh10M.400d.csv.gz). Replace the step 2 from the previous example by the following command:
  
   ```bash
