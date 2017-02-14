@@ -78,14 +78,8 @@ java -Xmx8G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.Filtere
  
  
 ### 2.3 Crossvalidation
-There is also possible to obtain cross-validated performance results using Weka.
-
- 1. We recommend installing first the [RankCorrelation](https://github.com/felipebravom/RankCorrelation/) package, which provides ranking correlation metrics for weka: 
-  ```bash
-java -cp $HOME/weka-3-8-1/weka.jar weka.core.WekaPackageManager -install-package RankCorrelation
-```
-
- 2. Train an SVM regression using lexicon features and ommit the testing file (-T) for obtaining cross-validated results: 
+There is also possible to obtain cross-validated performance results using Weka. 
+ * Train an SVM regression using lexicon features and ommit the testing file (-T) for obtaining cross-validated results: 
 
   ```bash
 java -Xmx4G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.FilteredClassifier -t data/anger-ratings-0to1.train.arff  -F "weka.filters.MultiFilter -F \"weka.filters.unsupervised.attribute.TweetToLexiconFeatureVector -I 2 -A -D -F -H -J -L -N -P -Q -R -T -U -O\" -F \"weka.filters.unsupervised.attribute.Reorder -R 5-last,4\"" -W weka.classifiers.functions.LibLINEAR -- -S 12 -C 1.0 -E 0.001 -B 1.0 -L 0.1 -I 1000 
