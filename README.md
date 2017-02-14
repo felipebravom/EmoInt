@@ -23,14 +23,15 @@ Example:
  ```bash
 python evaluate.py 4 anger-pred.tsv anger-gold.tsv fear-pred.tsv fear-gold.tsv joy-pred.tsv joy-gold.tsv sadness-pred.tsv sadness-gold.tsv
 ```
+
+### 1.3. Format
+Each input file must have the following format: id[tab]tweet[tab]emotion[tab]score. The script will complain in case of receiving a file with wrong format. 
+
 If you want to use the script purely a format checker, evaluate your predictions against themselves:
 
  ```bash
 python evaluate.py 1 anger-pred.tsv anger-pred.tsv
 ```
-
-### 1.3. Format
-Each input file must have the following format: id[tab]tweet[tab]emotion[tab]score. The script will complain in case of receiving a file with wrong format. 
 
 ## 2. Weka Baseline System
 We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package called [AffectiveTweets](https://github.com/felipebravom/AffectiveTweets) to be used as a baseline system. The package allows calculating multiple features from a tweet. Installation instructions are given in the project's [webpage](https://github.com/felipebravom/AffectiveTweets#installation).
