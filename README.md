@@ -1,8 +1,9 @@
 # EmoInt
-Scripts for WASSA-2017 Shared Task on Emotion Intensity (EmoInt).
+Scripts for for the  [WASSA-2017](http://optima.jrc.it/wassa2017/) Shared Task on Emotion Intensity [(EmoInt)](http://saifmohammad.com/WebPages/EmotionIntensity-SharedTask.html).  
+
 
 ## 1. Evaluation Script
-The evaluation script [evaluate.py](evaluate.py) calculates the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) and [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) between the gold standard scores and the given predictions.  The script can receive multiple pairs of prediction and gold standard files. In case of receiving more than one pair, it will compute the average Pearson and Spearman correlation. Note that Pearson is the official competition metric and that Spearman's coefficient is only given as a reference.
+The evaluation script [evaluate.py](evaluate.py) calculates the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) and [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) between the gold standard scores and the given predictions.  The script can receive multiple pairs of prediction and gold standard files. In case of receiving more than one pair, it will compute the average Pearson and Spearman correlation. Note that the average Pearson obtained for the four emotions (anger, fear, joy and sadness) is the official competition metric and that Spearman's coefficient is only given as a reference.
 
 
 ### 1.1. Prerequisites
@@ -22,7 +23,11 @@ Example:
  ```bash
 python evaluate.py 4 anger-pred.tsv anger-gold.tsv fear-pred.tsv fear-gold.tsv joy-pred.tsv joy-gold.tsv sadness-pred.tsv sadness-gold.tsv
 ```
-We suggest creating gold files with random scores for testing the script.
+If you want to use the script purely a format checker, evaluate your predictions against themselves:
+
+ ```bash
+python evaluate.py 1 anger-pred.tsv anger-pred.tsv
+```
 
 ### 1.3. Format
 Each input file must have the following format: id[tab]tweet[tab]emotion[tab]score. The script will complain in case of receiving a file with wrong format. 
