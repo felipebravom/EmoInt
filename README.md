@@ -49,7 +49,7 @@ python tweets_to_arff.py data/anger-ratings-0to1.test.target.tsv data/anger-rati
 ```
  If testing data hasn't been provided yet, you can split the training file into training and testing sub-samples. 
 
-2. Train an SVM regression (from LibLinear) on the training data using lexicons and word embeddings as features, classify the target tweets, and output the predictions:
+2. Train an SVM regression (from LibLinear) on the training data using lexicons, SentiStrength, and word embeddings as features, classify the target tweets, and output the predictions:
 
  ```bash
 java -Xmx4G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.FilteredClassifier -t data/anger-ratings-0to1.train.arff -T data/anger-ratings-0to1.test.target.arff -classifications "weka.classifiers.evaluation.output.prediction.CSV -use-tab -p first-last -file data/anger-predictions.csv" -F "weka.filters.MultiFilter -F \"weka.filters.unsupervised.attribute.TweetToEmbeddingsFeatureVector -I 2 -B $HOME/wekafiles/packages/AffectiveTweets/resources/w2v.twitter.edinburgh.100d.csv.gz -S 0 -K 15 -L -O\" -F \"weka.filters.unsupervised.attribute.TweetToLexiconFeatureVector -I 2 -A -D -F -H -J -L -N -P -Q -R -T -U -O\" -F \"weka.filters.unsupervised.attribute.TweetToSentiStrengthFeatureVector -I 2 -U -O\" -F \"weka.filters.unsupervised.attribute.Reorder -R 5-last,4\"" -W weka.classifiers.functions.LibLINEAR -- -S 12 -C 1.0 -E 0.001 -B 1.0 -L 0.1 -I 1000 
@@ -68,3 +68,13 @@ python fix_weka_output.py data/anger-predictions.csv data/anger-predictions-fixe
  ```bash
 python evaluate.py 1 data/anger-predictions-fixed.csv data/anger-ratings-0to1.test.gold.tsv
  ```
+ 
+ 2. Another example
+  Next, we show another example using all the features supported by the baseline system: word n-grams, character n-grams, Brown word clusters, POS tags, lexicons, SentiStrengh, and word embeddings.  In this case we are using word embeddings trained from a large corpus of tweets that can be downloaded [here](https://github.com/felipebravom/AffectiveTweets/releases/download/1.0.0/w2v.twitter.edinburgh10M.400d.csv.gz).
+ 
+  ```bash
+java -Xmx8G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.FilteredClassifier -t data/anger-ratings-0to1.train.arff -T data/anger-ratings-0to1.test.target.arff -classifications "weka.classifiers.evaluation.output.prediction.CSV -use-tab -p first-last -file data/anger-predictions.csv" -F "weka.filters.MultiFilter -F  \"weka.filters.unsupervised.attribute.TweetToSparseFeatureVector -M 2 -I 3 -R -Q 3 -A -D 3 -E 5 -L -O -F -G 2 -I 2\" -F \"weka.filters.unsupervised.attribute.TweetToEmbeddingsFeatureVector -I 2 -B $HOME/wekafiles/packages/AffectiveTweets/resources/w2v.twitter.edinburgh10M.400d.csv.gz -S 0 -K 15 -L -O\" -F \"weka.filters.unsupervised.attribute.TweetToLexiconFeatureVector -I 2 -A -D -F -H -J -L -N -P -Q -R -T -U -O\" -F \"weka.filters.unsupervised.attribute.TweetToSentiStrengthFeatureVector -I 2 -U -O\" -F \"weka.filters.unsupervised.attribute.Reorder -R 5-last,4\"" -W weka.classifiers.functions.LibLINEAR -- -S 12 -C 1.0 -E 0.001 -B 1.0 -L 0.1 -I 1000 
+```
+ 
+ 
+ 
