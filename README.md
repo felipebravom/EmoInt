@@ -33,9 +33,9 @@ python evaluate.py 1 anger-pred.tsv anger-pred.tsv
 Each input file must have the following format: id[tab]tweet[tab]emotion[tab]score. The script will complain in case of receiving a file with wrong format. 
 
 ## 2. Weka Baseline System
-We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package called [AffectiveTweets](https://github.com/felipebravom/AffectiveTweets) to be used as a baseline system. The package allows calculating multiple features from a tweet. Installation instructions are given in the project's [webpage](https://github.com/felipebravom/AffectiveTweets).
+We have implemented a [WEKA](http://www.cs.waikato.ac.nz/~ml/weka/) package called [AffectiveTweets](https://github.com/felipebravom/AffectiveTweets) to be used as a baseline system. The package allows calculating multiple features from a tweet. Installation instructions are given in the project's [webpage](https://github.com/felipebravom/AffectiveTweets#installation).
 
-We have also implemented the [tweets_to_arff.py](tweets_to_arff.py) script for converting the given data into [arff](http://weka.wikispaces.com/ARFF) format, and the [fix_weka_output.py](fix_weka_output.py) script for converting weka predictions into the official format.   
+We have also implemented the [tweets_to_arff.py](tweets_to_arff.py) script for converting the given data into [arff](http://weka.wikispaces.com/ARFF) format, and the [fix_weka_output.py](fix_weka_output.py) script for converting weka predictions into the official submission format.   
 
 
 ### 2.1. Example
