@@ -77,7 +77,7 @@ java -Xmx8G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.Filtere
 ```
  
  
-### 2.3 Crossvalidation
+### 2.3 Cross-validation
 There is also possible to obtain cross-validated performance results using Weka. 
  * Train an SVM regression using lexicon features and ommit the testing file (-T) for obtaining cross-validated results: 
 
