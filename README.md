@@ -93,6 +93,6 @@ A valid submission file for Codalab is a zip compressed file containing the foll
 3. joy-pred.txt
 4. sadness-pred.txt
 
-Each of these files must follow the official submission [format](#13-format). An example of submission file for the development data can be downloaded here [here](submission-dev.zip). The predictions were obtained using the Weka baseline system with the configuration used in the example from Section [2.2](#22-another-example). 
+Each of these files must follow the official submission [format](#13-format). An example of submission file for the development data can be downloaded [here](submission-dev.zip). The predictions were obtained using the Weka baseline system with the configuration used in the example from Section [2.2](#22-another-example). 
 A reference bash code for building this submission file from scratch is provided [here](codalab_dev_baseline.sh).
 
