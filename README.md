@@ -21,7 +21,7 @@ python evaluate.py <number-of-pairs> <file-prediction-1> <file-gold-1> ..... <fi
 Example:
 
  ```bash
-python evaluate.py 4 anger-pred.tsv anger-gold.tsv fear-pred.tsv fear-gold.tsv joy-pred.tsv joy-gold.tsv sadness-pred.tsv sadness-gold.tsv
+python evaluate.py 4 anger-pred.txt anger-gold.txt fear-pred.txt fear-gold.txt joy-pred.txt joy-gold.txt sadness-pred.txt sadness-gold.txt
 ```
 
 ### 1.3. Format
@@ -30,7 +30,7 @@ Each input file must have the following format: id[tab]tweet[tab]emotion[tab]sco
 If you want to use the script purely a format checker, evaluate your predictions against themselves:
 
  ```bash
-python evaluate.py 1 anger-pred.tsv anger-pred.tsv
+python evaluate.py 1 anger-pred.txt anger-pred.txt
 ```
 
 ## 2. Weka Baseline System
@@ -44,8 +44,8 @@ We have also implemented the [tweets_to_arff.py](tweets_to_arff.py) script for c
 1. Convert training and target data for the anger emotion into arff format:
 
  ```bash
-python tweets_to_arff.py data/anger-ratings-0to1.train.tsv data/anger-ratings-0to1.train.arff
-python tweets_to_arff.py data/anger-ratings-0to1.test.target.tsv data/anger-ratings-0to1.test.target.arff
+python tweets_to_arff.py data/anger-ratings-0to1.train.txt data/anger-ratings-0to1.train.arff
+python tweets_to_arff.py data/anger-ratings-0to1.test.target.txt data/anger-ratings-0to1.test.target.arff
 ```
  If testing data hasn't been provided yet, you can split the training file into training and testing sub-samples. 
 
@@ -66,7 +66,7 @@ python fix_weka_output.py data/anger-predictions.csv data/anger-predictions-fixe
 4. Evaluate the predictions: 
  
  ```bash
-python evaluate.py 1 data/anger-predictions-fixed.csv data/anger-ratings-0to1.test.gold.tsv
+python evaluate.py 1 data/anger-predictions-fixed.csv data/anger-ratings-0to1.test.gold.txt
  ```
  
 ### 2.2. Another example
