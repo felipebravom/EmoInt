@@ -85,4 +85,14 @@ There is also possible to obtain cross-validated performance results using Weka.
 java -Xmx4G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.FilteredClassifier -t data/anger-ratings-0to1.train.arff  -F "weka.filters.MultiFilter -F \"weka.filters.unsupervised.attribute.TweetToLexiconFeatureVector -I 2 -A -D -F -H -J -L -N -P -Q -R -T -U -O\" -F \"weka.filters.unsupervised.attribute.Reorder -R 5-last,4\"" -W weka.classifiers.functions.LibLINEAR -- -S 12 -C 1.0 -E 0.001 -B 1.0 -L 0.1 -I 1000 
 ```
 
+## 3. CodaLab
+A valid submission file for Codalab must be a zip compressed file with the following files:
+
+ 1.anger-pred.txt
+ 2.fear-pred.txt
+ 3.joy-pred.txt
+ 4.sadness-pred.txt
+
+An example of submission file for the development phase can be download here [here](submission_dev.zip). These predictions were obtained using the Weka baseline system with the features of the example given in Section 2.2. 
+A bash code for building these predictions from scratch is given [here](codalab_dev_baseline.sh).
 
