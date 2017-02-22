@@ -60,13 +60,13 @@ java -Xmx4G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.Filtere
 3. Convert the predictions into the task format:
 
  ```bash
-python fix_weka_output.py data/anger-predictions.csv data/anger-predictions-fixed.csv
+python fix_weka_output.py data/anger-pred.txt data/anger-pred.txt
  ```
  
 4. Evaluate the predictions: 
  
  ```bash
-python evaluate.py 1 data/anger-predictions-fixed.csv data/anger-ratings-0to1.test.gold.txt
+python evaluate.py 1 data/anger-pred.txt data/anger-ratings-0to1.test.gold.txt
  ```
  
 ### 2.2. Another example
