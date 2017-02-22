@@ -86,13 +86,13 @@ java -Xmx4G -cp $HOME/weka-3-8-1/weka.jar weka.Run weka.classifiers.meta.Filtere
 ```
 
 ## 3. CodaLab
-Submissions files for Codalab must consists of a single zip compressed file with the following files:
+A valid submission file for Codalab is a zip compressed file containing the following files:
 
 1. anger-pred.txt
 2. fear-pred.txt
 3. joy-pred.txt
 4. sadness-pred.txt
 
-An example of submission file for the development phase can be download here [here](submission-dev.zip). These predictions were obtained using the Weka baseline system using the configuration of the example given in Section [2.2](#22-another-example). 
+Each of these files must follow the official submission [format](#13-format). An example of submission file for the development data can be download here [here](submission-dev.zip). The predictions were obtained using the Weka baseline system with the configuration used in the example from Section [2.2](#22-another-example). 
 A reference bash code for building this submission file from scratch is provided[here](codalab_dev_baseline.sh).
 
