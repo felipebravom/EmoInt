@@ -13,7 +13,7 @@
 
 # evaluate.py
 # Author: felipebravom
-# Descrition: checks format and calculates Pearsons correlation WASSA-2017 Shared Task on Emotion Intensity (EmoInt)
+# Descrition: checks format and calculates Pearson correlation WASSA-2017 Shared Task on Emotion Intensity (EmoInt)
 # usage: python evaluate.py <number-of-pairs> <file-predictions-1> <file-gold-1> ..... <file-predictions-n> <file-gold-n>
 # requires: numpy
 
@@ -61,31 +61,43 @@ def evaluate(pred,gold):
                 raise ValueError('Format problem.')
             
             
+        
+        # lists storing gold and prediction scores
         gold_scores=[]  
         pred_scores=[]
+         
+        
+        # lists storing gold and prediction scores where gold score >= 0.5
+        gold_scores_range_05_1=[]
+        pred_scores_range_05_1=[]
          
             
         for id in data_dic:
             if(len(data_dic[id])==2):
                 gold_scores.append(data_dic[id][0])
                 pred_scores.append(data_dic[id][1])
+                if(data_dic[id][0]>=0.5):
+                    gold_scores_range_05_1.append(data_dic[id][0])
+                    pred_scores_range_05_1.append(data_dic[id][1])
             else:
                 raise ValueError('Repeated id in test data.')
                 
       
         # return zero correlation if predictions are constant
         if numpy.std(pred_scores)==0 or numpy.std(gold_scores)==0:
-            return (0,0)
+            return (0,0,0,0)
         
 
         pears_corr=scipy.stats.pearsonr(pred_scores,gold_scores)[0]                                    
-        spear_corr=scipy.stats.spearmanr(pred_scores,gold_scores)[0]                                
-                                    
-      
-        return (pears_corr,spear_corr)
+        spear_corr=scipy.stats.spearmanr(pred_scores,gold_scores)[0]   
+
+
+        pears_corr_range_05_1=scipy.stats.pearsonr(pred_scores_range_05_1,gold_scores_range_05_1)[0]                                    
+        spear_corr_range_05_1=scipy.stats.spearmanr(pred_scores_range_05_1,gold_scores_range_05_1)[0]           
         
-       
-                                    
+      
+        return (pears_corr,spear_corr,pears_corr_range_05_1,spear_corr_range_05_1)
+                                           
                           
         
     else:
@@ -103,13 +115,18 @@ def main(argv):
 
     pear_results=[]
     spear_results=[]
+    
+    pear_results_range_05_1=[]
+    spear_results_range_05_1=[]
+    
+  
         
         
     for i in range(0,num_pairs*2,2):
         pred=argv[i+1]
         gold=argv[i+2]       
         result=evaluate(pred,gold)
-        print "Pearsons correlation between "+pred+" and "+gold+":\t"+str(result[0])        
+        print "Pearson correlation between "+pred+" and "+gold+":\t"+str(result[0])        
         pear_results.append(result[0])
         
         
@@ -117,14 +134,30 @@ def main(argv):
         spear_results.append(result[1])
         
         
+        print "Pearson correlation for gold scores in range 0.5-1 between "+pred+" and "+gold+":\t"+str(result[2])        
+        pear_results_range_05_1.append(result[2])
+        
+        
+        print "Spearman correlation for gold scores in range 0.5-1 between "+pred+" and "+gold+":\t"+str(result[3])        
+        spear_results_range_05_1.append(result[3])
+        
+        
+        
+        
     avg_pear=numpy.mean(pear_results)
     avg_spear=numpy.mean(spear_results)
     
+    avg_pear_range_05_1=numpy.mean(pear_results_range_05_1)
+    avg_spear_range_05_1=numpy.mean(spear_results_range_05_1)
+    
     print
     
-    print "Average Pearsons correlation:\t"+str(avg_pear)
+    print "Average Pearson correlation:\t"+str(avg_pear)
     print "Average Spearman correlation:\t"+str(avg_spear)
         
+    print "Average Pearson correlation for gold scores in range 0.5-1:\t"+str(avg_pear_range_05_1)
+    print "Average Spearman correlationfor gold scores in range 0.5-1:\t"+str(avg_spear_range_05_1)
+    
 if __name__ == "__main__":
     main(sys.argv[1:])
 
