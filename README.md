@@ -3,7 +3,13 @@ Scripts for for the  [WASSA-2017](http://optima.jrc.it/wassa2017/) Shared Task o
 
 
 ## 1. Evaluation Script
-The evaluation script [evaluate.py](evaluate.py) calculates the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) and [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) between the gold standard scores and the given predictions.  The script can receive multiple pairs of prediction and gold standard files. In case of receiving more than one pair, it will compute the average Pearson and Spearman correlation. Note that the average Pearson obtained for the four emotions (anger, fear, joy and sadness) is the official competition metric and that Spearman's coefficient is only given as a reference.
+The evaluation script [evaluate.py](evaluate.py) calculates the following four measures between the gold standard scores and the given predictions. 
+ 1. Pearson_0_1: corresponds to the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) caclualted between all the predicions and the gold instances.
+ 2. Spearman_0_1: corresponds to the [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) caclualted between all the predicions and the gold instances.
+ 3. Pearson_05_1: corresponds to the Pearson correlation between predictions and gold instances where the gold emotion intensity score greater than or equal to 0.5. 
+ 4. Separman_05_1: corresponds to the Spearman correlation between predictions and gold instances where the gold emotion intensity score greater than or equal to 0.5.  
+ 
+The script can receive multiple pairs of prediction and gold standard files. In case of receiving more than one pair, it will compute the average Pearson and Spearman correlation. Note that the average Pearson_0_1 obtained for the four emotions (anger, fear, joy and sadness) is the official competition metric and that remainder metrics are only given as a reference.
 
 
 ### 1.1. Prerequisites
