@@ -1,0 +1,10 @@
+<p dir="ltr"><strong id="docs-internal-guid-7f62b13a-871a-9046-f28d-0dac3fa6e43e">Evaluation: </strong>For each emotion, systems are evaluated by calculating the Pearson Correlation Coefficient with Gold ratings. The correlation scores across all four emotions will be averaged to determine the bottom-line competition metric by which the submissions will be ranked.</p>
+<blockquote>
+<p dir="ltr">Additional metrics: In addition to the bottom-line competition metric described above, the following additional metrics will be provided:</p>
+<ul>
+<li>Spearman Rank Coefficient of the submission with the gold scores of the test data.<br /> <em>Motivation:</em> Spearman Rank Coefficient considers only how similar the two sets of ranking are. The differences in scores between adjacently ranked instance pairs is ignored. On the one hand this has been argued to alleviate some biases in Pearson, but on the other hand it can ignore relevant information.</li>
+<li>Correlation scores (Pearson and Spearman) over a subset of the test data formed by taking every instance with a gold emotion intensity score greater than or equal to 0.5.<br /> <em>Motivation:</em> In some applications, only those instances that are moderately or strongly emotional are relevant. Here it may be much more important for a system to correctly determine emotion intensities of instances in the higher range of the scale as compared to correctly determine emotion intensities in the lower range of the scale.</li>
+</ul>
+<p dir="ltr">Note that both these additional metrics will be calculated from the same submission zip described above. (Participants need not provide anything extra for these additional metrics.)</p>
+</blockquote>
+<p dir="ltr">The <a href="https://github.com/felipebravom/EmoInt">official evaluation script</a> (which also acts as a format checker) is available <a href="https://github.com/felipebravom/EmoInt">here</a>. You may want to run it on the training set to determine your progress, and eventually on the test set to check the format of your submission.</p>

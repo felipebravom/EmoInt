@@ -1,0 +1,2 @@
+command: python $program/evaluation.py $input $output
+description: WASSA-2017 EmoInt competition evaluation program.
