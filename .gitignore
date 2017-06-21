@@ -2,6 +2,7 @@
 duplicate/
 data/
 create_train_test.py
+rubbish/
 *.swp
 
 # Byte-compiled / optimized / DLL files
