@@ -1,6 +1,6 @@
 # WASSA EmoInt Competition Codalab Setup #
 
-This is a copy of the Codalab bundle of the EmoInt WASSA task http://saifmohammad.com/WebPages/EmotionIntensity-SharedTask.html
+This is a copy of the Codalab bundle of the [EmoInt WASSA task](http://saifmohammad.com/WebPages/EmotionIntensity-SharedTask.html).
 
 You can try uploading your own variation of this competition to the testing version of [Codalab](https://competitions-test.codalab.org) by doing the following:
   1. Download the competition [bundle](https://github.com/felipebravom/EmoInt/raw/master/codalab/competition.zip). 
