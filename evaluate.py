@@ -41,7 +41,7 @@ def evaluate(pred,gold):
         for line in gold_lines:
             parts=line.split('\t')
             if len(parts)==4:   
-                data_dic[int(parts[0])]=[float(line.split('\t')[3])]
+                data_dic[parts[0]]=[float(line.split('\t')[3])]
             else:
                 raise ValueError('Format problem.')
         
@@ -49,12 +49,12 @@ def evaluate(pred,gold):
         for line in pred_lines:
             parts=line.split('\t')
             if len(parts)==4:  
-                if int(parts[0]) in data_dic:
+                if parts[0] in data_dic:
                     try:
-                        data_dic[int(parts[0])].append(float(line.split('\t')[3]))
+                        data_dic[parts[0]].append(float(line.split('\t')[3]))
                     except ValueError:
                         # Invalid predictions are replaced by a default value
-                        data_dic[int(parts[0])].append(0.5)
+                        data_dic[parts[0]].append(0.5)
                 else:
                     raise ValueError('Invalid tweet id.')
             else:
